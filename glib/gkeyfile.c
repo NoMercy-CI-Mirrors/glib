@@ -2635,7 +2635,7 @@ g_key_file_get_locale_string (GKeyFile     *key_file,
       if (g_strcmp0 (languages[i], "C") == 0)
         break;
 
-      candidate_key = g_strdup_printf ("%s[%s]", key, languages[i]);
+      candidate_key = g_strconcat (key, "[", languages[i], "]", NULL);
       
       translated_value = g_key_file_get_string (key_file,
 						group_name,
@@ -2715,7 +2715,7 @@ g_key_file_get_locale_for_key (GKeyFile    *key_file,
       if (g_strcmp0 (languages[i], "C") == 0)
         break;
 
-      candidate_key = g_strdup_printf ("%s[%s]", key, languages[i]);
+      candidate_key = g_strconcat (key, "[", languages[i], "]", NULL);
       translated_value = g_key_file_get_string (key_file, group_name, candidate_key, NULL);
       g_free (translated_value);
       g_free (candidate_key);

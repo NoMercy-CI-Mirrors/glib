@@ -1061,7 +1061,7 @@ desktop_file_dir_unindexed_read_mimeapps_lists (DesktopFileDir *dir)
   desktops = get_lowercase_current_desktops ();
   for (i = 0; desktops[i]; i++)
     {
-      filename = g_strdup_printf ("%s/%s-mimeapps.list", dir->path, desktops[i]);
+      filename = g_strconcat (dir->path, "/", desktops[i], "-mimeapps.list", NULL);
       desktop_file_dir_unindexed_read_mimeapps_list (dir, filename, ADDED_ASSOCIATIONS_GROUP, FALSE);
       g_free (filename);
     }
@@ -1216,7 +1216,7 @@ desktop_file_dir_unindexed_read_intentapps_lists (DesktopFileDir *dir)
     {
       char *basename;
 
-      basename = g_strdup_printf ("%s-intentapps.list", desktops[i]);
+      basename = g_strconcat (desktops[i], "-intentapps.list", NULL);
       filename = g_build_filename (dir->path, basename, NULL);
       desktop_file_dir_unindexed_read_intentapps_list (dir, filename,
                                                        DEFAULT_APPLICATIONS_GROUP,
